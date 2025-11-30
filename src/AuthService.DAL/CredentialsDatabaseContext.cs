@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using AuthService.Models.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace AuthService.DAL;

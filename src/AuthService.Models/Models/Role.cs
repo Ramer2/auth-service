@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace AuthService.DAL;
+﻿namespace AuthService.Models.Models;
 
 public partial class Role
 {

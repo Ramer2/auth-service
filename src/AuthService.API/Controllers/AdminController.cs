@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AuthService.Services.Services.User;
+using Microsoft.AspNetCore.Mvc;
 
 namespace AuthService.API.Controllers;
 
@@ -6,10 +7,23 @@ namespace AuthService.API.Controllers;
 [ApiController]
 public class AdminController
 {
-    [HttpGet("users")]
-    public IResult GetUsers()
+    private readonly IUserService _userService;
+
+    public AdminController(IUserService userService)
     {
-        return Results.Ok();
+        _userService = userService;
+    }
+
+    [HttpGet("users")]
+    public async Task<IResult> GetUsers()
+    {
+        try
+        {
+            return Results.Ok(await _userService.GetUsers());
+        } catch (Exception ex)
+        {
+            return Results.BadRequest($"Error while retrieving users: {ex.Message}");
+        }
     }
     
 }
